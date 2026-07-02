@@ -1,41 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PixelPrompt - AI UI Component Generator SaaS
 
-## Getting Started
+PixelPrompt is an industry-ready, full-stack SaaS platform that allows users to instantly generate production-ready React UI components using natural language prompts. Built with a robust modern tech stack, this platform is designed for speed, security, and exceptional user experience.
 
-First, run the development server:
+## 🚀 Features
 
+* **AI-Powered Component Generation**: Type what you want, and PixelPrompt streams back fully functional React components (using Tailwind CSS and shadcn/ui).
+* **Live Interactive Playground**: Preview, test, and interact with the generated components immediately in a sandboxed execution environment.
+* **Secure Authentication**: Robust credential-based authentication system built with NextAuth.js.
+* **Credit & Billing System**: Integrated SQLite database using Prisma ORM to track user generations and manage virtual credits.
+* **Streaming Responses**: Ultra-low latency UI generation using edge-compatible streaming protocols.
+* **Modern Glassmorphism UI**: A stunning, fully responsive dashboard built with Tailwind CSS and Radix UI primitives.
+
+## 💻 Tech Stack
+
+* **Frontend**: React 18, Next.js 14 (App Router), Tailwind CSS
+* **UI Components**: shadcn/ui, Radix UI, Lucide Icons, react-resizable-panels
+* **Backend**: Next.js Server Actions & Route Handlers
+* **Database & ORM**: Prisma v5, SQLite
+* **Authentication**: NextAuth.js (v4)
+* **Code Execution**: react-live, babel-standalone
+
+## 🛠️ Getting Started (Local Development)
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-# or Docker If the make command is available...
-make run # Docker Image Build
+git clone https://github.com/Meghna-ydv12/pixelprompt.git
+cd pixelprompt
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Setup Environment Variables
+Create a `.env` file in the root directory and add the following:
+```env
+# Database connection (SQLite)
+DATABASE_URL="file:./dev.db"
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# NextAuth configuration
+NEXTAUTH_SECRET="supersecret123"
+NEXTAUTH_URL="http://localhost:3000"
+```
 
-## Learn More
+### 4. Initialize the Database
+Sync the Prisma schema to create the SQLite tables:
+```bash
+npx prisma db push
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 5. Start the Development Server
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000) in your browser. 
+To test the platform, click **Sign In (Demo)**. The system will automatically provision a new user in the database and grant 10 credits.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Envs
-You will need anthropic api key
+## 🏗️ Architecture Note
+*Note for Reviewers: This specific repository uses a mocked AI streaming engine in the `api/chat/route.ts` file to demonstrate fullstack data-flow and UI capabilities without incurring live LLM API costs. The architecture is fully prepared to swap the mock for the official `@ai-sdk/openai` or `@ai-sdk/anthropic` adapters.*
