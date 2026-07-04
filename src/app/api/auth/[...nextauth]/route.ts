@@ -50,8 +50,8 @@ const handler = NextAuth({
           select: { credits: true }
         });
         
-        session.user.id = token.sub;
-        session.user.credits = dbUser?.credits || 0;
+        (session.user as any).id = token.sub;
+        (session.user as any).credits = dbUser?.credits || 0;
       }
       return session;
     }
