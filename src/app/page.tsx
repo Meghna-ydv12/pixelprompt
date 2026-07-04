@@ -60,7 +60,7 @@ export default function Page() {
             </>
           ) : (
             <button
-              onClick={() => signIn("credentials", { email: "recruiter@gmail.com", password: "123" })}
+              onClick={() => signIn("credentials", { email: "user@example.com", password: "123" })}
               className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
             >
               Sign In (Demo)
