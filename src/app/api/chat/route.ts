@@ -109,12 +109,18 @@ export async function POST(req: Request) {
   let mockComponent = dashboardComponent;
   let componentName = "Dashboard";
   
-  if (lastMessage.includes("price") || lastMessage.includes("pricing")) {
+  // Create a combined string of all previous messages to remember context
+  const fullHistory = messages.map((m: any) => m.content.toLowerCase()).join(" ");
+
+  if (fullHistory.includes("price") || fullHistory.includes("pricing")) {
     mockComponent = pricingComponent;
     componentName = "Pricing Component";
-  } else if (lastMessage.includes("login") || lastMessage.includes("sign")) {
+  } else if (fullHistory.includes("login") || fullHistory.includes("sign") || fullHistory.includes("form")) {
     mockComponent = loginComponent;
     componentName = "Login Component";
+  } else {
+    mockComponent = dashboardComponent;
+    componentName = "Dashboard";
   }
 
   const responseText = "I have generated the UI for you based on your prompt!\n\n<antartifact title=\"" + componentName + "\">\n" + mockComponent + "\n</antartifact>\n";
