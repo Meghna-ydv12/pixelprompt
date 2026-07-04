@@ -192,6 +192,19 @@ export function ClientChat({
           </div>
         </div>
       </div>
+      {messages.length === 0 && status === "authenticated" && (
+        <div className="px-4 pb-2 flex flex-wrap gap-2">
+          <Button variant="outline" size="sm" className="text-xs text-muted-foreground" onClick={() => setInput("Design a beautiful login form")}>
+            ✨ Design a login form
+          </Button>
+          <Button variant="outline" size="sm" className="text-xs text-muted-foreground" onClick={() => setInput("Build a modern pricing table")}>
+            ✨ Build a pricing table
+          </Button>
+          <Button variant="outline" size="sm" className="text-xs text-muted-foreground" onClick={() => setInput("Create an analytics dashboard")}>
+            ✨ Create a dashboard
+          </Button>
+        </div>
+      )}
       <div className="bg-background flex items-center gap-2 border-t px-4 py-3">
         <Input
           placeholder={status === "authenticated" ? "Type your message..." : "Sign in to generate UI"}
